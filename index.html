@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sadia Sultana Mim — Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,500;1,6..72,300&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f5f2ec;
+      --ink: #1a1a1a;
+      --muted: #6b6457;
+      --accent: #c0392b;
+      --line: #d4cec5;
+      --card: #ede9e1;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Newsreader', Georgia, serif;
+      min-height: 100vh;
+      padding: 0 1.5rem;
+    }
+
+    /* top bar */
+    .topbar {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 2.2rem 0 1rem;
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .topbar-name {
+      font-size: 1.05rem;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+    }
+
+    .topbar-links {
+      display: flex;
+      gap: 1.4rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--muted);
+    }
+
+    .topbar-links a {
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .topbar-links a:hover { color: var(--accent); }
+
+    /* hero */
+    .hero {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 5rem 0 3.5rem;
+    }
+
+    .hero-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--accent);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.4rem, 6vw, 3.6rem);
+      font-weight: 300;
+      font-style: italic;
+      line-height: 1.15;
+      margin-bottom: 1.4rem;
+      color: var(--ink);
+    }
+
+    .hero h1 span {
+      font-style: normal;
+      font-weight: 500;
+    }
+
+    .hero p {
+      font-size: 1.05rem;
+      line-height: 1.75;
+      color: var(--muted);
+      max-width: 520px;
+      font-style: italic;
+    }
+
+    /* section label */
+    .section-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+      padding-top: 3rem;
+    }
+
+    /* projects */
+    .projects {
+      max-width: 720px;
+      margin: 0 auto;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .project-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      padding: 1.6rem 1.8rem;
+      margin-bottom: 1rem;
+      transition: border-color 0.2s, transform 0.15s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 3px;
+      background: var(--accent);
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    .project-card:hover {
+      border-color: var(--accent);
+      transform: translateX(3px);
+    }
+
+    .project-card:hover::before { opacity: 1; }
+
+    .project-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .project-name {
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    .project-links {
+      display: flex;
+      gap: 0.8rem;
+      flex-shrink: 0;
+    }
+
+    .project-links a {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      border: 1px solid var(--line);
+      padding: 0.3rem 0.65rem;
+      border-radius: 2px;
+      transition: all 0.15s;
+    }
+
+    .project-links a:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .project-links a.live {
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .project-desc {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.6;
+      font-style: italic;
+    }
+
+    .project-tag {
+      display: inline-block;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: var(--bg);
+      border: 1px solid var(--line);
+      color: var(--muted);
+      padding: 0.15rem 0.5rem;
+      border-radius: 2px;
+      margin-top: 0.9rem;
+      margin-right: 0.3rem;
+    }
+
+    /* about */
+    .about {
+      max-width: 720px;
+      margin: 0 auto;
+      padding-bottom: 4rem;
+    }
+
+    .about p {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: var(--muted);
+      font-style: italic;
+      max-width: 580px;
+    }
+
+    .about p + p { margin-top: 0.9rem; }
+
+    /* footer */
+    footer {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 1.5rem 0 3rem;
+      border-top: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    footer span {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--muted);
+    }
+
+    footer a {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    /* fade in */
+    @keyframes fadein {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero, .projects, .about {
+      animation: fadein 0.5s ease both;
+    }
+
+    .projects { animation-delay: 0.1s; }
+    .about    { animation-delay: 0.18s; }
+
+    @media (max-width: 500px) {
+      .topbar-links { gap: 0.9rem; }
+      .project-top { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="topbar">
+    <span class="topbar-name">Sadia Sultana Mim</span>
+    <nav class="topbar-links">
+      <a href="https://github.com/sadiamim092-byte" target="_blank">github</a>
+      <a href="mailto:sadiamim092@gmail.com">email</a>
+    </nav>
+  </div>
+
+  <div class="hero">
+    <p class="hero-tag">Portfolio</p>
+    <h1>
+      things i've <span>built</span><br/>
+      while learning
+    </h1>
+    <p>
+      Student at BUET, Chemical Engineering. I write code on the side — 
+      mostly Python, some Java, a bit of web stuff. This is where I keep it.
+    </p>
+  </div>
+
+  <div class="projects">
+    <p class="section-label">Projects</p>
+
+    <!-- Project 1 -->
+    <div class="project-card">
+      <div class="project-top">
+        <span class="project-name">CLI App using OOP in Java</span>
+        <div class="project-links">
+          <a class="live" href="https://sadiamim092-byte.github.io/CLI-app-using-OOP-in-Java" target="_blank">▶ live</a>
+          <a href="https://github.com/sadiamim092-byte/CLI-app-using-OOP-in-Java" target="_blank">repo</a>
+        </div>
+      </div>
+      <p class="project-desc">
+        A CLI game built with Java using OOP principles — classes, inheritance, encapsulation. 
+        The live version is wrapped and presented with HTML and CSS, so the full stack 
+        here is Java, HTML, and CSS working together.
+      </p>
+      <span class="project-tag">Java</span>
+      <span class="project-tag">OOP</span>
+      <span class="project-tag">HTML</span>
+      <span class="project-tag">CSS</span>
+    </div>
+
+    <!-- Project 2 -->
+    <div class="project-card">
+      <div class="project-top">
+        <span class="project-name">Smartphone Analysis Office</span>
+        <div class="project-links">
+          <a href="https://github.com/sadiamim092-byte/smartphone-analysis-office" target="_blank">repo</a>
+        </div>
+      </div>
+      <p class="project-desc">
+        Data analysis project on smartphone specs and comparisons. Done entirely using the 
+        Microsoft Office suite — Word for write-up and documentation, Excel for data tables, 
+        and PowerPoint for reporting.
+      </p>
+      <span class="project-tag">Word</span>
+      <span class="project-tag">Excel</span>
+      <span class="project-tag">PowerPoint</span>
+      <span class="project-tag">Data Analysis</span>
+    </div>
+
+    <!-- Project 3 -->
+    <div class="project-card">
+      <div class="project-top">
+        <span class="project-name">Amazon MacBook Info Scraper</span>
+        <div class="project-links">
+          <a href="https://github.com/sadiamim092-byte/amazon-macbook-info-scraper" target="_blank">repo</a>
+        </div>
+      </div>
+      <p class="project-desc">
+        A web scraper that pulls MacBook listing data from Amazon — 
+        prices, specs, ratings. Structured for clean data output.
+      </p>
+      <span class="project-tag">Python</span>
+      <span class="project-tag">Web Scraping</span>
+    </div>
+
+  </div>
+
+  <div class="about">
+    <p class="section-label">A note</p>
+    <p>
+      I'm still early. I don't have years of work experience — I have a curiosity 
+      that keeps me building things and figuring them out. I'm studying chemical engineering 
+      at BUET but I spend a lot of evenings writing code.
+    </p>
+    <p>
+      Right now I'm learning Blender. Before that it was scraping. Before that it was OOP in Java. 
+      I like picking things up and seeing where they go.
+    </p>
+  </div>
+
+  <footer>
+    <span>sadiamim092@gmail.com · +880 1956-298851</span>
+    <a href="https://github.com/sadiamim092-byte" target="_blank">github.com/sadiamim092-byte</a>
+  </footer>
+
+</body>
+</html>
